@@ -59,7 +59,7 @@ jobs:
       - name: Prepare release
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          tar -cvf binary_release_${{ env.os_version}}.tar build.txt
+          tar -zcvf binary_release_${{ env.os_version}}.tar.gz build.txt
 
       - name: Release
         uses: softprops/action-gh-release@v1
