@@ -55,8 +55,8 @@ jobs:
         run: |
           echo $(date) ${{ env.os_version}} ${{ github.ref }} > build.txt
       
-      - name: Echo github obj
-        run: echo ${{ toJson(github) }}
+      # - name: Echo github obj
+      #   run: echo ${{ toJson(github) }}
 
       - name: Debug
         run: |
