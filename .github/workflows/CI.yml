@@ -24,6 +24,9 @@ jobs:
         os: [ubuntu-18.04, ubuntu-latest]
     # The type of runner that the job will run on
     runs-on: ${{ matrix.os }}
+
+    # Only run with create event if new tag, not new branch
+    if: github.event_name != 'create' || (github.event_name == 'create' && startsWith(github.ref, 'refs/tags'))
     
     env:
       FC: gfortran
@@ -52,11 +55,14 @@ jobs:
         run: |
           echo $(date) ${{ env.os_version}} ${{ github.ref }} > build.txt
       
+      # - name: Echo github obj
+      #   run: echo ${{ toJson(github) }}
+
       - name: Debug
         run: |
           echo "Ref: ${{ github.ref }}"
           echo "Event name: ${{ github.event_name }}"
-          echo "Event: ${{ github.event }}"
+          echo "Event: ${{ github.event.ref_type }}"
 
       - name: Prepare release
         if: startsWith(github.ref, 'refs/tags/')
