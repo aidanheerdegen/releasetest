@@ -8,8 +8,9 @@ when a new tag is pushed to the repo.
 In theory pushing a new tag should trigger a `push` event, but it didn't work that way for me.
 I had to add a `create` action to the `on` section.
 
-This will run the CI whenever a tag or branch is created. To prevent it running added an if
-statement to filter out any create action that didn't have a reference that started with `refs/tags`
+This will run the CI whenever a tag or branch is created. To prevent it running when a branch
+is created added an if statement to filter out any create action that didn't have a reference 
+that started with `refs/tags`
 
 ```yaml
     # Only run with create event if new tag, not new branch
