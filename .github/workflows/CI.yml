@@ -35,7 +35,7 @@ jobs:
       - name: Checkout code 
         uses: actions/checkout@v2
         with:
-          submodules: 'recursive'
+          fetch-depth: 0
       
       - name: Determing OS version
         uses: kenchan0130/actions-system-info@master
